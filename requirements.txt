@@ -1,0 +1,8 @@
+pandas
+numpy
+utils
+psycopg2
+mysqlclient==1.4.2.post1
+sqlalchemy
+PyYAML
+urllib
