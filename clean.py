@@ -17,7 +17,7 @@ client = Socrata("data.seattle.gov", None)
 
 # First 2000 results, returned as JSON from API / converted to Python list of
 # dictionaries by sodapy.
-results = client.get("2bpz-gwpy", limit=10000)
+results = client.get("2bpz-gwpy", limit=50000)
 
 # Convert to pandas DataFrame
 results_df = pd.DataFrame.from_records(results)
