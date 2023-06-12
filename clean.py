@@ -63,7 +63,7 @@ sql_statements = [
     "ALTER TABLE dataco2 ALTER COLUMN propertyname TYPE varchar(100);",
     "ALTER TABLE dataco2 ALTER COLUMN neighborhood TYPE varchar(50);",
     "ALTER TABLE dataco2 ALTER COLUMN latitude TYPE numeric USING latitude::numeric;",
-    "ALTER TABLE dataco2 ALTER COLUMN longitude TYPE numeric USING latitude::numeric;",
+    "ALTER TABLE dataco2 ALTER COLUMN longitude TYPE numeric USING longitude::numeric;",
     "ALTER TABLE dataco2 ALTER COLUMN yearbuilt TYPE int USING yearbuilt::int;",
     "ALTER TABLE dataco2 ALTER COLUMN numberofbuildings TYPE int USING numberofbuildings::int;",
     "ALTER TABLE dataco2 ALTER COLUMN numberoffloors TYPE int USING numberoffloors::int;",
