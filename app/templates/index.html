@@ -10,7 +10,10 @@
         {{ form.csrf_token }}
         {{ form.name.label }} {{ form.name(size=20) }}<br>
         {{ form.email.label }} {{ form.email(size=20) }}<br>
+        {{ form.age.label }} {{ form.age }}<br>
+        {{ form.quantity.label }} {{ form.quantity(size=5) }}<br> 
         {{ form.submit() }}
     </form>
+    
 </body>
 </html>
