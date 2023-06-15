@@ -130,3 +130,7 @@ dmypy.json
 
 venv_CO2
 config.yaml
+/data
+testdataiku.py
+loadDB.py
+procdatadataiku.py
