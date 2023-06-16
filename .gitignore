@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 venv_CO2
-Co2env
+Co2env/
 config.yaml
 test.py
 2016_Building_Energy_Benchmarking.csv

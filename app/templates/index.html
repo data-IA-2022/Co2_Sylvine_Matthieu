@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Bienvenue sur ma première application Flask !</h1>
-    <form method="POST">
+    <form  method="POST">
         {{ form.csrf_token }}
         {{ form.name.label }} {{ form.name(size=20) }}<br>
         {{ form.email.label }} {{ form.email(size=20) }}<br>

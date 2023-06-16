@@ -24,8 +24,7 @@ def home():
         name = form.name.data
         email = form.email.data
         age = form.age.data
-        quantity = float(form.quantity.data)  # Convertir la valeur en nombre réel
-        # Traitez les données du formulaire comme vous le souhaitez
+        quantity = float(form.quantity.data)  
 
         return "Formulaire soumis avec succès !"
 
@@ -35,4 +34,4 @@ def home():
 # Point d'entrée de l'application
 if __name__ == '__main__':
     # Lancer l'application Flask
-    app.run()
+    app.run(host='0.0.0.0')
