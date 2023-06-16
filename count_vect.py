@@ -82,4 +82,5 @@ df['nombre_utilisation_differente'] = df[noms].apply(lambda row: row.astype(str)
 table_name = 'dataco2cv'
 
 # Importez votre DataFrame dans la base de données
-#df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+df.to_csv('dataset_prepared2.csv', index=False)
