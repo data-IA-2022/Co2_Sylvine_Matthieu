@@ -16,7 +16,7 @@ db_url = f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
 engine = create_engine(db_url)
 
 # Spécifier le nom de la table que vous souhaitez exporter
-table_name = '"CO2_dataco2_prepared"'
+table_name = '"CO2_dataco2_prepared2"'
 
 # Exécuter une requête SQL pour sélectionner les données de la table
 query = f"SELECT * FROM {table_name}"
@@ -66,8 +66,9 @@ df['thirdlargestpropertyusetype'] = df['thirdlargestpropertyusetype'].str.lower(
 
 for colonne in noms_gfa:
     for index, row in df.iterrows():
-        if row['largestpropertyusetype'] + "_gfa" == colonne:
-            df.loc[index, colonne] *= row['largestpropertyusetypegfa']
+        if row['secondlargestpropertyusetype'] is not None:
+            if row['largestpropertyusetype'] + "_gfa" == colonne:
+                df.loc[index, colonne] *= row['largestpropertyusetypegfa']
         if row['secondlargestpropertyusetype'] is not None:
             if row['secondlargestpropertyusetype'] + "_gfa"   == colonne:
                 df.loc[index, colonne] *= row['secondlargestpropertyuse']
@@ -81,4 +82,4 @@ df['nombre_utilisation_differente'] = df[noms].apply(lambda row: row.astype(str)
 table_name = 'dataco2cv'
 
 # Importez votre DataFrame dans la base de données
-df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+#df.to_sql(table_name, con=engine, if_exists='replace', index=False)
