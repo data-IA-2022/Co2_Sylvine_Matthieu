@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma première application Flask</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Bienvenue sur ma première application Flask !</h1>
+    <form  method="POST">
+        {{ form.csrf_token }}
+        {{ form.name.label }} {{ form.name(size=20) }}<br>
+        {{ form.email.label }} {{ form.email(size=20) }}<br>
+        {{ form.age.label }} {{ form.age }}<br>
+        {{ form.quantity.label }} {{ form.quantity(size=5) }}<br> 
+        {{ form.submit() }}
+    </form>
+    
+</body>
+</html>
