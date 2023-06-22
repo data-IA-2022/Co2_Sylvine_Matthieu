@@ -30,6 +30,11 @@ cur = conn.cursor()
 response = request.urlopen(api_url)
 data = json.loads(response.read())
 
+print(type(data[0]))
+print(data[207].keys())
+# print(data.keys())
+
+quit()
 # Définir le schéma dynamiquement en fonction des clés présentes dans les données
 def define_schema():
     create_table_query = "CREATE TABLE ma_table ("

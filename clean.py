@@ -5,6 +5,8 @@ import utils
 import numpy as np
 from sqlalchemy import create_engine
 from sqlalchemy import text
+from sqlalchemy import create_engine
+from sqlalchemy import text
 # Unauthenticated client only works with public data sets. Note 'None'
 # in place of application token, and no username or password:
 client = Socrata("data.seattle.gov", None)
@@ -104,5 +106,3 @@ with engine.connect() as conn:
         conn.commit()
 
 print("database modifiée les champions =)")
-
-conn.close()

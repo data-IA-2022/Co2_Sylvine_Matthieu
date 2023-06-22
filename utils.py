@@ -13,7 +13,7 @@ def get_engine():
     cfg = get_config()
 
     url = "{driver}://{user}:{password}@{host}/{database}".format(**cfg)
-    print('URL', url)
+    # print('URL', url)
 
     engine = create_engine(url)
     return engine
