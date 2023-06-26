@@ -134,3 +134,5 @@ config.yaml
 testdataiku.py
 loadDB.py
 procdatadataiku.py
+modelisation.ipynb_checkpoints
+creata_data_for_AzureAutoML.py
