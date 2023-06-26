@@ -81,5 +81,19 @@ df[noms_gfa] = df[noms_gfa].applymap(lambda x: 0 if x == 1 else x)
 df['nombre_utilisation_differente'] = df[noms].apply(lambda row: row.astype(str).str.count('1').sum(), axis=1)
 table_name = 'dataco2cv'
 
+df = df[(df['osebuildingid'] != 496) & (df['osebuildingid'] != 27966)]
+
+for index, row in df.iterrows():
+    if pd.isnull(row["largestpropertyusetype"]) or row["largestpropertyusetype"] == "null":
+        df.at[index, "largestpropertyusetype"] = row["listofallpropertyusetypes"]
+        df.at[index, "largestpropertyusetypegfa"] = row["propertygfatotal"]
+        
+
+# for cellule in df['listofallpropertyusetypes']:
+#     nombre_de_use = cellule.count(',') + 1
+    
+
 # Importez votre DataFrame dans la base de données
-#df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+df.to_csv('dataset_prepared2.csv', index=False)
+
