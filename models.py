@@ -18,35 +18,6 @@ data = data[data["osebuildingid"] != 49784]
 data["totalghgemissions_log"] = np.log(data['totalghgemissions'])
 data ["siteenergyuse_kbtu_log"] = np.log(data['siteenergyuse_kbtu'])
 
-listOfAllUses = ['adult education', 'automobile dealership', 'bank branch', 'bar/nightclub', 'college/university', 
-                 'convenience store without gas station', 'courthouse', 'data center', 'distribution center', 
-                 'enclosed mall', 'energy/power station', 'fast food restaurant', 'financial office', 'fire station', 
-                 'fitness center/health club/gym', 'food sales', 'food service', 'hospital', 'hotel', 'k-12 school', 'laboratory', 
-                 'library', 'lifestyle center', 'manufacturing/industrial plant', 'medical office', 'movie theater', 'multifamily housing', 
-                 'museum', 'non-refrigerated warehouse', 'office', 'other', 'other - education', 'other - entertainment/public assembly', 
-                 'other - lodging/residential', 'other - mall', 'other - public services', 'other - recreation', 'other - restaurant/bar', 
-                 'other - services', 'other - technology/science', 'other - utility', 'other/specialty hospital', 
-                 'outpatient rehabilitation/physical therapy', 'parking', 'performing arts', 'personal services', 'police station', 
-                 'pre-school/daycare', 'prison/incarceration', 'refrigerated warehouse', 'repair services', 'residence hall/dormitory', 
-                 'residential care facility', 'restaurant', 'retail store', 'self-storage facility', 'senior care community', 
-                 'single family home', 'social/meeting hall', 'strip mall', 'supermarket/grocery store', 'swimming pool', 
-                 'urgent care/clinic/other outpatient', 'vocational school', 'wholesale club/supercenter', 'worship facility']
-listOfAllUsesGfa = ['adult education_gfa', 'automobile dealership_gfa', 'bank branch_gfa', 'bar/nightclub_gfa', 
-                    'college/university_gfa', 'convenience store without gas station_gfa', 'courthouse_gfa', 'data center_gfa', 
-                    'distribution center_gfa', 'enclosed mall_gfa', 'energy/power station_gfa', 'fast food restaurant_gfa', 
-                    'financial office_gfa', 'fire station_gfa', 'fitness center/health club/gym_gfa', 'food sales_gfa', 
-                    'food service_gfa', 'hospital_gfa', 'hotel_gfa', 'k-12 school_gfa', 'laboratory_gfa', 'library_gfa', 
-                    'lifestyle center_gfa', 'manufacturing/industrial plant_gfa', 'medical office_gfa', 'movie theater_gfa', 
-                    'multifamily housing_gfa', 'museum_gfa', 'non-refrigerated warehouse_gfa', 'office_gfa', 'other_gfa', 
-                    'other - education_gfa', 'other - entertainment/public assembly_gfa', 'other - lodging/residential_gfa', 
-                    'other - mall_gfa', 'other - public services_gfa', 'other - recreation_gfa', 'other - restaurant/bar_gfa', 
-                    'other - services_gfa', 'other - technology/science_gfa', 'other - utility_gfa', 'other/specialty hospital_gfa', 
-                    'outpatient rehabilitation/physical therapy_gfa', 'parking_gfa', 'performing arts_gfa', 'personal services_gfa', 
-                    'police station_gfa', 'pre-school/daycare_gfa', 'prison/incarceration_gfa', 'refrigerated warehouse_gfa', 
-                    'repair services_gfa', 'residence hall/dormitory_gfa', 'residential care facility_gfa', 'restaurant_gfa', 
-                    'retail store_gfa', 'self-storage facility_gfa', 'senior care community_gfa', 'single family home_gfa', 
-                    'social/meeting hall_gfa', 'strip mall_gfa', 'supermarket/grocery store_gfa', 'swimming pool_gfa', 
-                    'urgent care/clinic/other outpatient_gfa', 'vocational school_gfa', 'wholesale club/supercenter_gfa', 'worship facility_gfa']
 # Séparer les caractéristiques (features) et la variable cible
 X = data[[ "numberofbuildings","numberoffloors", "primarypropertytype",
                 "Gaz_bool", "Vapeur_bool", "propertygfabuilding_s"]]
@@ -105,7 +76,6 @@ models = [
         }
     }
 ]
-
 import pickle
 
 results = []
@@ -152,13 +122,12 @@ for model_info in models:
     # Mettre à jour le meilleur score et le meilleur modèle si nécessaire
     if grid_search.best_score_ > best_score:
         best_score = grid_search.best_score_
-        best_model = pipeline
+        best_model = grid_search.best_estimator_
 
 # Enregistrer le meilleur modèle
-with open('modelv1.pkl', 'wb') as file:
+with open('best_model.pkl', 'wb') as file:
     pickle.dump(best_model, file)
 
-# Afficher les résultats
 for result in results:
     print(f"Model: {result['model']}")
     print(f"Best parameters: {result['best_params']}")
@@ -166,3 +135,6 @@ for result in results:
     print(f"R2 score on test data: {result['r2_score']}")
     print(f"RMSE on test data: {result['rmse']}")
     print()
+
+loaded_model = pickle.load(open("best_model.pkl","rb"))
+loaded_model.predict(X)

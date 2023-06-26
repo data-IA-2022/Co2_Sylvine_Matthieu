@@ -6,14 +6,12 @@
 </head>
 <body>
     <h1>Bienvenue sur ma première application Flask !</h1>
-    <form  method="POST">
-        {{ form.csrf_token }}
-        {{ form.name.label }} {{ form.name(size=20) }}<br>
-        {{ form.email.label }} {{ form.email(size=20) }}<br>
-        {{ form.age.label }} {{ form.age }}<br>
-        {{ form.quantity.label }} {{ form.quantity(size=5) }}<br> 
-        {{ form.submit() }}
-    </form>
-    
+    <div>
+        <h2>Choisissez l'action à effectuer :</h2>
+        <a href="{{ url_for('form_page') }}"><button>Accéder au formulaire</button></a>
+        <a href="{{ url_for('upload_csv') }}"><button>Pour le csv</button></a>
+    </div>
+
+   
 </body>
 </html>

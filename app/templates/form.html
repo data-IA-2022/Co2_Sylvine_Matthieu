@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma première application Flask</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>Bienvenue sur ma première application Flask !</h1>
+    <form method="POST">
+        {{ form.csrf_token }}
+        <div class="wrapper">
+            <li>
+                {{ form.utilisation.label }}<br>
+                {{ form.utilisation() }}
+            </li>
+            <li>
+                {{ form.taille.label }}<br>
+                {{ form.taille(size=20, type="number") }}
+            </li>
+            <li>
+                {{ form.utilise_gaz.label }}<br>
+                {{ form.utilise_gaz() }}
+            </li>
+            <li>
+                {{ form.utilise_vapeur.label }}<br>
+                {{ form.utilise_vapeur() }}
+            </li>
+            <li>
+                {{ form.nombre_batiments.label }}<br>
+                {{ form.nombre_batiments(size=5, type="number") }}
+            </li>
+            <li>
+                {{ form.nombre_etages.label }}<br>
+                {{ form.nombre_etages(size=5, type="number") }}
+            </li>
+        </div>
+        {{ form.submit() }}
+    </form>
+    <br>
+    <a href="{{ url_for('home') }}">
+        <button>Retour à la page d'accueil</button>
+    </a>
+</body>
+</html>
