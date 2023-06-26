@@ -3,15 +3,23 @@
 <head>
     <title>Ma première application Flask</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
     <h1>Bienvenue sur ma première application Flask !</h1>
-    <div>
-        <h2>Choisissez l'action à effectuer :</h2>
-        <a href="{{ url_for('form_page') }}"><button>Accéder au formulaire</button></a>
-        <a href="{{ url_for('upload_csv') }}"><button>Pour le csv</button></a>
+    <div class="button-container">
+        <a href="{{ url_for('form_page') }}">
+            <button>Accéder au formulaire</button>
+        </a>
+        <a href="{{ url_for('upload_csv') }}">
+            <button class="learn-more">
+                <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+                </span>
+                <span class="button-text">Pour le csv</span>
+              </button>
+        </a>
     </div>
-
-   
 </body>
 </html>
+

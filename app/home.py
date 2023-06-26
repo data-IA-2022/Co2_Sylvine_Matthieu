@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, NumberRange
 from wtforms import FloatField
 from flask import Flask, render_template, redirect, url_for, request
 from werkzeug.utils import secure_filename
-import os
+import pandas as pd
 import csv
 
 # Créer une instance de l'application Flask
@@ -68,11 +68,15 @@ def upload_csv():
     if form.validate_on_submit():
         # Traiter le chargement du fichier CSV
         csv_file = form.csv_file.data
-        # Autres traitements du fichier CSV
-
-        return "Fichier CSV chargé avec succès !"
-
+        
+        # Lire le contenu du fichier CSV en tant que DataFrame
+        df = pd.read_csv(csv_file)
+        
+        # Passer le DataFrame au modèle pour l'affichage
+        return render_template('csv_display.html', csv_data=df.to_html(index=False))
+    
     return render_template('csv.html', form=form)
+
 # Point d'entrée de l'application
 if __name__ == '__main__':
     # Lancer l'application Flask
