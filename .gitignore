@@ -135,3 +135,12 @@ test.py
 2016_Building_Energy_Benchmarking.csv
 table.csv
 test.csv
+
+venv_CO2
+config.yaml
+/data
+testdataiku.py
+loadDB.py
+procdatadataiku.py
+modelisation.ipynb_checkpoints
+creata_data_for_AzureAutoML.py
