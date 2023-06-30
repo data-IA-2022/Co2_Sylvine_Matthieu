@@ -3,23 +3,122 @@
 <head>
     <title>Ma première application prout</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
 
+        body {
+            margin: 0;
+            background: linear-gradient(45deg, #49a09d, #5f2c82);
+            font-family: sans-serif;
+            font-weight: 100;
+        }
+        button {
+            background: linear-gradient(45deg, #49a09d, #5f2c82);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        h1 {
+            font-weight: 700;
+            font-size: 30px;
+            text-transform: uppercase;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            padding: 20px;
+        }
+        
+        .button-container a {
+            position: relative;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .button-container a:hover {
+            transform: scale(1.1);
+        }
+        
+        .button-container img {
+            width: 200px;
+            height: auto;
+            margin-right: 20px;
+        }
+        
+        .button-container .button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .button-container .button-overlay button {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        .button-container .image-container:hover .button-overlay {
+            opacity: 1;
+        }
+        
+        .button-container .learn-more {
+            position: relative;
+        }
+        
+        .button-container .learn-more .icon {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        .button-container .learn-more:hover .icon {
+            background-color: #5f2c82;
+        }
+        
+    </style>
 </head>
 <body>
     <h1>Bienvenue sur ma première application Flask !</h1>
     <div class="button-container">
         <a href="{{ url_for('form_page') }}">
-            <button>Accéder au formulaire</button>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='seattle_friends.jpg') }}" alt="Your Image">
+                <div class="button-overlay">
+                    <button>Accéder au formulaire</button>
+                </div>
+            </div>
         </a>
         <a href="{{ url_for('upload_csv') }}">
-            <button class="learn-more">
-                <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
-                </span>
-                <span class="button-text">Pour le csv</span>
-              </button>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='seattle_csv.jpg') }}" alt="Your Image">
+                <div class="button-overlay">
+                    <button class="learn-more">
+                        Intégrer un csv avec les prédictions
+                    </button>
+                </div>
+            </div>
         </a>
     </div>
 </body>
 </html>
-

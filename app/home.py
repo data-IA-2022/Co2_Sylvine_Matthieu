@@ -4,10 +4,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired, NumberRange
 from wtforms import FloatField
-from flask import Flask, render_template, redirect, url_for, request
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template
 import pandas as pd
 import csv
+from fonctions_app import makePredictionCsv, makePredictionIndiv
+
 
 # Créer une instance de l'application Flask
 app = Flask(__name__)
@@ -28,7 +29,6 @@ class MyForm(FlaskForm):
 def home():
     return render_template('index.html')
 
-# Définir une route pour le formulaire
 @app.route('/form', methods=['GET', 'POST'])
 def form_page():
     form = MyForm()
@@ -42,6 +42,7 @@ def form_page():
     form.utilisation.choices = [(val, val) for val in valeurs_colonne]
 
     if form.validate_on_submit():
+        # Récupérer les valeurs du formulaire
         utilisation = form.utilisation.data
         taille = form.taille.data
         utilise_gaz = form.utilise_gaz.data
@@ -49,11 +50,20 @@ def form_page():
         nombre_batiments = form.nombre_batiments.data
         nombre_etages = form.nombre_etages.data
 
-        # Traitez les données du formulaire comme vous le souhaitez
+        # Appeler la fonction makePredictionIndiv avec les données du formulaire
+        predictions = makePredictionIndiv(nombre_batiments, nombre_etages, utilisation, utilise_gaz, utilise_vapeur, taille)
 
-        return "Formulaire soumis avec succès !"
+        data = [[ nombre_batiments, nombre_etages, utilisation, utilise_gaz, utilise_vapeur, taille, predictions[0], predictions[1]]]
+        columns = [ "Nombre de batiments", "Nombre d'étages", "Utilité première", "Utilisation de gaz", "Utilisation de Vapeur", "Taille du batiment", "Emission de GES (T d'équivalent CO2)", "Consommation d'énergie (kBtu)"]
+        prediction_df = pd.DataFrame(data, columns=columns)
+
+        # Traitez les prédictions comme vous le souhaitez, par exemple, affichez-les ou enregistrez-les dans une base de données, etc.
+
+        return render_template('prediction.html',  predictions=prediction_df.to_html(index=False))
 
     return render_template('form.html', form=form)
+
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
@@ -67,15 +77,16 @@ def upload_csv():
     form = CSVForm()  # Créer une instance du formulaire
     if form.validate_on_submit():
         # Traiter le chargement du fichier CSV
-        csv_file = form.csv_file.data
+        csv_file = form.csv_file.data        
         
-        # Lire le contenu du fichier CSV en tant que DataFrame
-        df = pd.read_csv(csv_file)
+        # Passer le DataFrame au modèle pour obtenir la prédiction
+        prediction = makePredictionCsv(csv_file)  
         
-        # Passer le DataFrame au modèle pour l'affichage
-        return render_template('csv_display.html', csv_data=df.to_html(index=False))
+        # Passer le DataFrame de prédiction au template pour l'affichage
+        return render_template('csv_display.html', prediction=prediction.to_html(index=False))
     
     return render_template('csv.html', form=form)
+
 
 # Point d'entrée de l'application
 if __name__ == '__main__':

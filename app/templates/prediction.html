@@ -8,15 +8,20 @@
             height: 100%;
         }
 
-        html {
+        body {
+            margin: 0;
             background: linear-gradient(45deg, #49a09d, #5f2c82);
             font-family: sans-serif;
             font-weight: 100;
         }
-
-        body {
-            margin: 0;
-            overflow-y: scroll; /* Ajout de la propriété overflow-y pour toujours afficher la barre de défilement */
+        
+        h1 {
+            font-weight: 700;
+            font-size: 30px;
+            text-transform: uppercase;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
         }
 
         .container {
@@ -39,15 +44,6 @@
             background-color: rgba(255,255,255,0.2);
             color: #fff;
         }
-        p {
-            width: 800px;
-            max-height: 300px; /* Hauteur maximale du paragraphe */
-            overflow: auto; /* Ajout de la propriété overflow */
-            padding: 15px;
-            background-color: rgba(255,255,255,0.2);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
 
         th {
             text-align: left;
@@ -56,15 +52,6 @@
         thead th {
             background-color: #55608f;
         }
-
-        h1 {
-            font-weight: 700;
-            font-size: 30px;
-            text-transform: uppercase;
-            color: white;
-            text-align: center;
-            margin-top: 20px;
-        }
         button {
             background: linear-gradient(45deg, #49a09d, #5f2c82);
             color: #fff;
@@ -72,14 +59,22 @@
             border: none;
             cursor: pointer;
         }
+        
+        
     </style>
 </head>
 <body>
-    <h1>Prédiction :</h1>
-    <p>{{ prediction|safe }}</p>
-    <br>
-    <a href="{{ url_for('home') }}">
-        <button>Retour à la page d'accueil</button>
-    </a>
+    <div class="container">
+        <H1>Prédiction :</h1>
+        <table>
+            <tbody>
+                {{ predictions|safe }}
+            </tbody>
+        </table>
+        <br>
+        <a href="{{ url_for('home') }}">
+            <button>Retour à la page d'accueil</button>
+        </a>
+    </div>
 </body>
 </html>

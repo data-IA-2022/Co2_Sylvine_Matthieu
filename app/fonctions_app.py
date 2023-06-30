@@ -70,6 +70,11 @@ def makePredictionCsv(csv_input):
   df_exp = pd.DataFrame(Y_exp, columns=['predictedGhgEmissions', 'predictedEnergyConsumption'])
 
   df_combined = pd.concat([dataset, df_exp], axis=1)
+  df_combined = df_combined[['osebuildingid', 'propertyname', 
+                  "numberofbuildings","numberoffloors", "primarypropertytype","Gaz_bool", "Vapeur_bool", "propertygfabuilding_s", 'predictedGhgEmissions', 'predictedEnergyConsumption'
+                  ]]
+  df_combined = df_combined.rename(columns={'osebuildingid': 'id'})
+  df_combined = df_combined.rename(columns={'propertygfabuilding_s': 'propertygfabuilding'})
   return(df_combined)
 
 # b = makePredictionCsv("data/Template_Building_Energy_Benchmarking.csv")

@@ -2,6 +2,20 @@
 <html>
   <head>
     <title>Chargement CSV</title>
+    <style>
+      html,
+      body {
+          height: 100%;
+      }
+
+      body {
+          margin: 0;
+          background: linear-gradient(45deg, #49a09d, #5f2c82);
+          font-family: sans-serif;
+          font-weight: 100;
+      }
+      
+  </style>
     <link
       rel="stylesheet"
       type="text/css"
@@ -139,10 +153,11 @@
         </form>
       </div>
     </div>
+    <br>
+    <a href="{{ url_for('home') }}">
+        <button>Retour à la page d'accueil</button>
+    </a>
   </body>
 </html>
-<label for="csv_file" id="file_label" class="upload-text">Cliquez ici pour sélectionner un fichier</label>
-<input type="file" name="csv_file" id="csv_file" accept=".csv" style="display: none;" required />
-
 
 
