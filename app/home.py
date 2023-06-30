@@ -29,7 +29,7 @@ class MyForm(FlaskForm):
 def home():
     return render_template('index.html')
 
-@app.route('/form', methods=['GET', 'POST'])
+@app.route('/form_page', methods=['GET', 'POST'])
 def form_page():
     form = MyForm()
 
