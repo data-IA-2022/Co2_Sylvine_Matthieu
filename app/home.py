@@ -16,12 +16,12 @@ app.config['SECRET_KEY'] = 'your-secret-key'  # Clé secrète pour la protection
 
 # Définir une classe de formulaire
 class MyForm(FlaskForm):
-    utilisation = SelectField('utilisation', validators=[DataRequired()], choices=[])
-    taille = FloatField('taille', validators=[DataRequired(), NumberRange(min=1, max=50000000)])
-    utilise_gaz = SelectField('utilise_gaz', choices=[('Oui', 'Oui'), ('Non', 'Non')], validators=[DataRequired()])
-    utilise_vapeur = SelectField('utilise_vapeur', choices=[('Oui', 'Oui'), ('Non', 'Non')], validators=[DataRequired()])
-    nombre_batiments = FloatField('nombre_batiments', validators=[DataRequired(), NumberRange(min=1, max=200)])
-    nombre_etages = FloatField('nombre_etages', validators=[DataRequired(), NumberRange(min=1, max=200)])
+    utilisation = SelectField('Utilisation Principale de votre Building', validators=[DataRequired()], choices=[])
+    taille = FloatField('Taille', validators=[DataRequired(), NumberRange(min=1, max=50000000)])
+    utilise_gaz = SelectField('Utilisation du gaz ?', choices=[('Oui', 'Oui'), ('Non', 'Non')], validators=[DataRequired()])
+    utilise_vapeur = SelectField('Utilisation de vapeur ?', choices=[('Oui', 'Oui'), ('Non', 'Non')], validators=[DataRequired()])
+    nombre_batiments = FloatField('Combien de batiments au total ?', validators=[DataRequired(), NumberRange(min=1, max=200)])
+    nombre_etages = FloatField("Combien avez-vous d'étages sur le batiment principal?", validators=[DataRequired(), NumberRange(min=1, max=200)])
     submit = SubmitField('Submit')
 
 # Définir une route pour l'URL racine '/'

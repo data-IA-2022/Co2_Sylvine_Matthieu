@@ -6,6 +6,9 @@
         html,
         body {
             height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
         }
 
         body {
@@ -14,14 +17,35 @@
             font-family: sans-serif;
             font-weight: 100;
         }
+
         button {
             background: linear-gradient(45deg, #49a09d, #5f2c82);
             color: #fff;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
+            margin-top: 170px;
         }
-        
+
+        h1 {
+            font-weight: 700;
+            font-size: 30px;
+            text-transform: uppercase;
+            color: white;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 170px;
+        }
+
+        form li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
