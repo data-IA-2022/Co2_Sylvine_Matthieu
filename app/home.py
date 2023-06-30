@@ -34,7 +34,7 @@ def form_page():
     form = MyForm()
 
     # Lire le fichier CSV et extraire les valeurs uniques de la colonne souhaitée
-    with open('static/dataset_prepared2.csv', 'r') as csvfile:
+    with open('dataset_prepared2.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile)
         valeurs_colonne = set(row['primarypropertytype'] for row in reader)
 
